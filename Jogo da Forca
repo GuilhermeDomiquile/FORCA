@@ -1,0 +1,46 @@
+import random
+
+filmes = ["interstellar", "django", "inception", "dunkirk", "o regresso"]
+frutas = ["maça", "banana", "jabuticaba", "goiaba", "kiwi"]
+palavra = None
+Letras_usuario = []
+chances = 7
+
+
+resposta = input("Quer que o tema seja filmes ou frutas? ")
+if resposta == "filmes":
+    palavra = random.choice(filmes)
+
+else:
+    palavra = random.choice(frutas)
+
+while True:
+    print("Você ainda tem ", chances, " chances")
+    letras = input(" Digite uma letra: ")
+    Letras_usuario.append(letras.lower())
+
+    if letras.lower() not in palavra.lower():
+        chances -= 1
+
+
+    for letras in palavra:
+        if letras.lower() in Letras_usuario:
+            print(letras, end="")
+
+        else:
+            print("_", end=" ")
+
+    ganhou = True
+
+    for letra in palavra:
+        if letra.lower() not in Letras_usuario:
+
+            ganhou = False
+
+    if chances == 0:
+        print(" / Você perdeu! A palavra era "+palavra)
+        break
+
+    elif ganhou == True:
+        print(" / Você acertou! A palavra era "+palavra)
+        break
